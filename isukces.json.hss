@@ -1,0 +1,42 @@
+@VisualStudio = @"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe";
+@projName = "isukces.json";
+@slnName = projName;
+
+
+@projDir = string.Format(@"{0}\{1}\", ConfigDir, projName);
+@nugetexe = Environment.GetEnvironmentVariable("NUGETEXE");
+@nugetrepo = Environment.GetEnvironmentVariable("NUGETREPO");
+
+
+if (string.IsNullOrEmpty(nugetexe)) throw new Exception("Brak zmiennej œrodowiskowej NUGETEXE");
+if (string.IsNullOrEmpty(nugetrepo)) throw new Exception("Brak zmiennej œrodowiskowej NUGETREPO");
+
+// task: update version
+{
+	var pi = projDir + @"\Properties\AssemblyInfo.cs";
+	var currentVer = CsProject.GetAssemblyFileVersion(pi);
+	var newVer = CsProject.UpdateVersion(currentVer);
+	MakeMessage("update version {0} -> {1}", currentVer, newVer);
+	CsProject.UpdateAssemblyFileVersion(pi, newVer);
+	CsProject.UpdateAssemblyVersion(pi, newVer);
+}
+
+var log = CombinePath(ConfigDir, "compile.log");
+DeleteFile(log);
+
+
+
+// task: clean
+Execute(VisualStudio, CombinePath(ConfigDir, slnName+".sln"), "/clean", "Release");
+
+// task: build 
+Execute(VisualStudio, CombinePath(ConfigDir, slnName+".sln"), "/build", "Release", "/out", log);
+
+
+Execute(nugetexe, "pack", projDir+ projName + ".csproj", "-IncludeReferencedProjects -Prop Configuration=RELEASE");
+  
+var version = GetAssemblyVersion(projDir + string.Format(@"bin\Release\{0}.dll", projName));
+Console.WriteLine(version);
+var nugetPackage = string.Format(@"{0}\{1}.{2}.nupkg",ConfigDir, projName, version);
+CopyFile(nugetPackage, nugetrepo);
+DeleteFile(nugetPackage);

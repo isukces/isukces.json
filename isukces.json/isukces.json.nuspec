@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>iSukces Json</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/isukces/isukces.json</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Small extension class for Newtonsoft.Json</description>
+    <releaseNotes>JsonUtils class with ready to use default instance</releaseNotes>
+    <copyright>Copyright by Internet Sukces Piotr Stęclik 2015</copyright>
+    <tags>json</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\isukces.json.pdb" target="lib\net45" />
+    <file src="bin\Release\isukces.json.xml" target="lib\net45" />
+  </files>
+</package>
+
+
