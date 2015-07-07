@@ -12,7 +12,7 @@ namespace isukces.json.test
         static void Main(string[] args)
         {
 
-            BasicSerialization.T01_emptyStruct();
+            BasicSerialization.T02_document_with_xml();
         }
     }
 }
