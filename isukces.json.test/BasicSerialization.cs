@@ -28,12 +28,36 @@ namespace isukces.json.test
             };
             var v1 = g.Xml.ToString();
             var serialized1 = JsonUtils.Default.Serialize(g, Newtonsoft.Json.Formatting.None);
-            g = JsonUtils.Default.Deserialize < ObjectWithXml>(serialized1);
+            g = JsonUtils.Default.Deserialize<ObjectWithXml>(serialized1);
             var v2 = g.Xml.ToString();
             var serialized2 = JsonUtils.Default.Serialize(g, Newtonsoft.Json.Formatting.None);
             Assert.Equal(serialized1, serialized2);
             Assert.Equal(v1, v2);
             Assert.Equal(expectedSerialized, serialized1);
         }
+
+
+        [Fact]
+        [Xunit.Trait("Category", "Basic")]
+        public static void T03_interface_serialization()
+        {
+            IConcteteType tmp = new ConcteteType
+            {
+                Name = "Piotr",
+                Country = "Poland"
+            };
+            var utils = JsonUtils.Default;
+            utils.SerializerFactory = utils.SerializerFactory.WithProcessing(serializer =>
+            {
+                serializer.WithAbstractTypeConverter<IConcteteType, ConcteteType>();
+            });
+
+            var serialized = utils.Serialize(tmp, Newtonsoft.Json.Formatting.Indented);
+            var deserialied = utils.Deserialize<IConcteteType>(serialized);
+
+            Assert.Equal(typeof(ConcteteType), deserialied.GetType());
+
+        }
+
     }
 }
