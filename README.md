@@ -11,7 +11,7 @@ isukces.json consists of
 
 Allows to serialize and deserialize objects i.e.
 
-```c
+```cs
 var serialized = JsonUtils.Default.Serialize(myObject, Newtonsoft.Json.Formatting.Indented);
 var deserialied = utils.Deserialize<MyType>(serialized);
 ```
@@ -23,7 +23,7 @@ var deserialied = utils.Deserialize<MyType>(serialized);
 
 Allows to deserialize abstract types or interfaces by providing concrete type.
 
-```c
+```cs
 var jsonUtils = JsonUtils.Default;
 
 jsonUtils.SerializerFactory = jsonUtils.SerializerFactory
@@ -39,7 +39,7 @@ var deserialied = utils.Deserialize<ISomeInterface>(serialized);
 
 Allows to serialize XDocument class to string
 
-```c
+```cs
 class ObjectWithXml
 {
     [JsonConverter(typeof(XDocumentStringConverter))]
