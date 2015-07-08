@@ -26,5 +26,17 @@ namespace isukces.json
             src.Converters.Add(new AbstractTypeConverter<TAbstract, TConcrete>());
             return src;
         }
+
+
+        public static Func<JsonSerializer> WithProcessing(this Func<JsonSerializer> src, Action<JsonSerializer> action)
+        {
+            Func<JsonSerializer> func = () =>
+            {
+                var jsonSerializer = src();
+                action(jsonSerializer);
+                return jsonSerializer;
+            };
+            return func;
+        }
     }
 }
