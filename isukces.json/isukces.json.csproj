@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractTypeConverter.cs" />
+    <Compile Include="IJsonSemaphore.cs" />
     <Compile Include="JsonExtensions.cs" />
     <Compile Include="JsonUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sync.cs" />
     <Compile Include="XDocumentStringConverter.cs" />
   </ItemGroup>
   <ItemGroup>

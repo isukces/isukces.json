@@ -1,15 +1,14 @@
-@VisualStudio = @"c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe";
+@VisualStudio = GlobalVar["VisualStudio 2015"];
+@nugetexe = GlobalVar["Nuget"];
+@nugetrepo = GlobalVar["Private Nuget Repository"];
+
+
 @projName = "isukces.json";
 @slnName = projName;
 
 
 @projDir = string.Format(@"{0}\{1}\", ConfigDir, projName);
-@nugetexe = Environment.GetEnvironmentVariable("NUGETEXE");
-@nugetrepo = Environment.GetEnvironmentVariable("NUGETREPO");
 
-
-if (string.IsNullOrEmpty(nugetexe)) throw new Exception("Brak zmiennej œrodowiskowej NUGETEXE");
-if (string.IsNullOrEmpty(nugetrepo)) throw new Exception("Brak zmiennej œrodowiskowej NUGETREPO");
 
 // task: update version
 {
@@ -40,3 +39,6 @@ Console.WriteLine(version);
 var nugetPackage = string.Format(@"{0}\{1}.{2}.nupkg",ConfigDir, projName, version);
 CopyFile(nugetPackage, nugetrepo);
 DeleteFile(nugetPackage);
+
+
+Console.WriteLine("-------FINISH");

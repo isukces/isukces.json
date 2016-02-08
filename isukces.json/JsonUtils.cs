@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 // ReSharper disable UnusedMember.Global
@@ -47,11 +48,19 @@ namespace isukces.json
                 return serializer.Deserialize<T>(jsonReader);
         }
 
+
+        public T Load<T>(FileInfo file, IJsonSemaphore mutex)
+        {
+            if (mutex == null)
+                throw new ArgumentNullException(nameof(mutex));
+            return Sync.Calc(mutex, () => Load<T>(file));
+        }
+
         public T Load<T>(FileInfo file)
         {
 
             if (file == null)
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException(nameof(file));
             if (!file.Exists)
                 return default(T);
 
@@ -64,11 +73,17 @@ namespace isukces.json
             }
         }
 
+
+        public List<T> LoadList<T>(FileInfo file, IJsonSemaphore mutex)
+        {
+            return Sync.Calc(mutex, () => LoadList<T>(file));
+
+        }
         public List<T> LoadList<T>(FileInfo file)
         {
 
             if (file == null)
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException(nameof(file));
             if (!file.Exists)
                 return null;
 
@@ -81,10 +96,15 @@ namespace isukces.json
             }
         }
 
+        public void Save<T>(FileInfo file, T data, IJsonSemaphore mutex, Formatting f = Formatting.Indented)
+        {
+            Sync.Exec(mutex, () => Save(file, data, f));
+        }
+
         public void Save<T>(FileInfo file, T data, Formatting f = Formatting.Indented)
         {
             if (file == null)
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException(nameof(file));
             using (var fileStream = File.Open(file.FullName, FileMode.Create))
             using (var streamWriter = new StreamWriter(fileStream))
             using (var jsonTextWriter = new JsonTextWriter(streamWriter))
@@ -117,13 +137,7 @@ namespace isukces.json
 
         #region Static Properties
 
-        public static JsonUtils Default
-        {
-            get
-            {
-                return InstanceHolder.Instance;
-            }
-        }
+        public static JsonUtils Default => InstanceHolder.Instance;
 
         #endregion Static Properties
 
@@ -147,6 +161,4 @@ namespace isukces.json
         }
         #endregion Nested Classes
     }
-
-
 }

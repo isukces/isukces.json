@@ -22,7 +22,7 @@ namespace isukces.json
         /// <exception cref="ArgumentNullException"></exception>
         public static JsonSerializer WithAbstractTypeConverter<TAbstract, TConcrete>(this JsonSerializer src)
         {
-            if (src == null) throw new ArgumentNullException("src");
+            if (src == null) throw new ArgumentNullException(nameof(src));
             src.Converters.Add(new AbstractTypeConverter<TAbstract, TConcrete>());
             return src;
         }
