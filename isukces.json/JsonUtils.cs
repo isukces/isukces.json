@@ -1,17 +1,21 @@
-﻿using System;
+﻿#region using
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+
+#endregion
+
 // ReSharper disable UnusedMember.Global
 
 namespace isukces.json
 {
     public class JsonUtils
     {
-        #region Constructors
+        #region Constructors
 
         // ReSharper disable once MemberCanBePrivate.Global
         public JsonUtils(Func<JsonSerializer> serializerFactory)
@@ -19,9 +23,9 @@ namespace isukces.json
             SerializerFactory = serializerFactory;
         }
 
-        #endregion Constructors
+        #endregion
 
-        #region Static Methods
+        #region Static Methods
 
         // Public Methods 
 
@@ -35,7 +39,33 @@ namespace isukces.json
             return serializer;
         }
 
-        #endregion Static Methods
+        #endregion
+
+        #region Static Properties
+
+        public static JsonUtils Default => InstanceHolder.Instance;
+
+        #endregion
+
+        #region Properties
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public Func<JsonSerializer> SerializerFactory { get; set; }
+
+        #endregion
+
+        #region Nested
+
+        private static class InstanceHolder
+        {
+            #region Static Fields
+
+            public static readonly JsonUtils Instance = new JsonUtils(DefaultSerializerFactory);
+
+            #endregion
+        }
+
+        #endregion
 
         #region Methods
 
@@ -44,8 +74,17 @@ namespace isukces.json
         public T Deserialize<T>(string json)
         {
             var serializer = SerializerFactory();
-            using (JsonReader jsonReader = new JsonTextReader(new StringReader(json)))
+            using(JsonReader jsonReader = new JsonTextReader(new StringReader(json)))
                 return serializer.Deserialize<T>(jsonReader);
+        }
+
+        public object Deserialize(string json, Type objectType)
+        {
+            if (string.IsNullOrEmpty(json))
+                return null;
+            var serializer = SerializerFactory();
+            using(JsonReader jsonReader = new JsonTextReader(new StringReader(json)))
+                return serializer.Deserialize(jsonReader, objectType);
         }
 
 
@@ -58,15 +97,14 @@ namespace isukces.json
 
         public T Load<T>(FileInfo file)
         {
-
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
             if (!file.Exists)
                 return default(T);
 
-            using (var fileStream = File.Open(file.FullName, FileMode.Open))
-            using (var reader = new StreamReader(fileStream))
-            using (var textReader = new JsonTextReader(reader))
+            using(var fileStream = File.Open(file.FullName, FileMode.Open))
+            using(var reader = new StreamReader(fileStream))
+            using(var textReader = new JsonTextReader(reader))
             {
                 var serializer = SerializerFactory();
                 return serializer.Deserialize<T>(textReader);
@@ -77,19 +115,18 @@ namespace isukces.json
         public List<T> LoadList<T>(FileInfo file, IJsonSemaphore mutex)
         {
             return Sync.Calc(mutex, () => LoadList<T>(file));
-
         }
+
         public List<T> LoadList<T>(FileInfo file)
         {
-
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
             if (!file.Exists)
                 return null;
 
-            using (var fileStream = File.Open(file.FullName, FileMode.Open))
-            using (var reader = new StreamReader(fileStream))
-            using (var textReader = new JsonTextReader(reader))
+            using(var fileStream = File.Open(file.FullName, FileMode.Open))
+            using(var reader = new StreamReader(fileStream))
+            using(var textReader = new JsonTextReader(reader))
             {
                 var jsonSerializer = new JsonSerializer();
                 return jsonSerializer.Deserialize<IEnumerable<T>>(textReader).ToList();
@@ -105,9 +142,9 @@ namespace isukces.json
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
-            using (var fileStream = File.Open(file.FullName, FileMode.Create))
-            using (var streamWriter = new StreamWriter(fileStream))
-            using (var jsonTextWriter = new JsonTextWriter(streamWriter))
+            using(var fileStream = File.Open(file.FullName, FileMode.Create))
+            using(var streamWriter = new StreamWriter(fileStream))
+            using(var jsonTextWriter = new JsonTextWriter(streamWriter))
             {
                 jsonTextWriter.Formatting = f; // Formatting.Indented;
                 var serializer = SerializerFactory();
@@ -119,9 +156,9 @@ namespace isukces.json
         {
             if (o == null)
                 return null;
-            using (var stringWriter = new StringWriter())
+            using(var stringWriter = new StringWriter())
             {
-                using (var jsonWriter = new JsonTextWriter(stringWriter))
+                using(var jsonWriter = new JsonTextWriter(stringWriter))
                 {
                     jsonWriter.Formatting = formatting; // Formatting.None;
                     var serializer = SerializerFactory();
@@ -134,31 +171,5 @@ namespace isukces.json
         }
 
         #endregion Methods
-
-        #region Static Properties
-
-        public static JsonUtils Default => InstanceHolder.Instance;
-
-        #endregion Static Properties
-
-        #region Properties
-
-        // ReSharper disable once MemberCanBePrivate.Global
-        public Func<JsonSerializer> SerializerFactory { get; set; }
-
-        #endregion Properties
-
-        #region Nested Classes
-
-
-        static class InstanceHolder
-        {
-            #region Static Fields
-
-            public static readonly JsonUtils Instance = new JsonUtils(DefaultSerializerFactory);
-
-            #endregion Static Fields
-        }
-        #endregion Nested Classes
     }
 }
