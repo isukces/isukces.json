@@ -36,3 +36,4 @@ _ReSharper*/
 *.csbak
 /*.ide
 /packages
+/.idea
