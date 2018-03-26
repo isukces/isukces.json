@@ -14,11 +14,11 @@
     <IncludeSource>false</IncludeSource>
     <IncludeSymbols>true</IncludeSymbols>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <AssemblyVersion>1.0.17299.16</AssemblyVersion>
-    <Version>1.0.17299.16</Version>
-    <FileVersion>1.0.17299.16</FileVersion>
+    <AssemblyVersion>1.0.18085.17</AssemblyVersion>
+    <Version>1.0.18085.17</Version>
+    <FileVersion>1.0.18085.17</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 </Project>

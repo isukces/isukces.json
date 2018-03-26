@@ -1,13 +1,9 @@
-﻿#region using
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-
-#endregion
 
 // ReSharper disable UnusedMember.Global
 
@@ -15,17 +11,11 @@ namespace isukces.json
 {
     public class JsonUtils
     {
-        #region Constructors
-
         // ReSharper disable once MemberCanBePrivate.Global
         public JsonUtils(Func<JsonSerializer> serializerFactory)
         {
             SerializerFactory = serializerFactory;
         }
-
-        #endregion
-
-        #region Static Methods
 
         // Public Methods 
 
@@ -38,38 +28,6 @@ namespace isukces.json
             serializer.DefaultValueHandling = DefaultValueHandling.Ignore;
             return serializer;
         }
-
-        #endregion
-
-        #region Static Properties
-
-        public static JsonUtils Default => InstanceHolder.Instance;
-
-        #endregion
-
-        #region Properties
-
-        // ReSharper disable once MemberCanBePrivate.Global
-        public Func<JsonSerializer> SerializerFactory { get; set; }
-
-        #endregion
-
-        #region Nested
-
-        private static class InstanceHolder
-        {
-            #region Static Fields
-
-            public static readonly JsonUtils Instance = new JsonUtils(DefaultSerializerFactory);
-
-            #endregion
-        }
-
-        #endregion
-
-        #region Methods
-
-        // Public Methods 
 
         public T Deserialize<T>(string json)
         {
@@ -92,7 +50,8 @@ namespace isukces.json
         {
             if (mutex == null)
                 throw new ArgumentNullException(nameof(mutex));
-            return Sync.Calc(mutex, () => Load<T>(file));
+            var result = Sync.Calc(mutex, () => Load<T>(file));
+            return result;
         }
 
         public T Load<T>(FileInfo file)
@@ -107,7 +66,8 @@ namespace isukces.json
             using(var textReader = new JsonTextReader(reader))
             {
                 var serializer = SerializerFactory();
-                return serializer.Deserialize<T>(textReader);
+                var result = serializer.Deserialize<T>(textReader);
+                return result;
             }
         }
 
@@ -129,7 +89,11 @@ namespace isukces.json
             using(var textReader = new JsonTextReader(reader))
             {
                 var jsonSerializer = new JsonSerializer();
-                return jsonSerializer.Deserialize<IEnumerable<T>>(textReader).ToList();
+                var a = jsonSerializer.Deserialize<IEnumerable<T>>(textReader);
+                if (a == null)
+                    return null;
+                var result = a.ToList();
+                return result;
             }
         }
 
@@ -170,6 +134,14 @@ namespace isukces.json
             }
         }
 
-        #endregion Methods
+        public static JsonUtils Default => InstanceHolder.Instance;
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public Func<JsonSerializer> SerializerFactory { get; set; }
+
+        private static class InstanceHolder
+        {
+            public static readonly JsonUtils Instance = new JsonUtils(DefaultSerializerFactory);
+        }
     }
 }

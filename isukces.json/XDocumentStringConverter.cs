@@ -11,8 +11,6 @@ namespace isukces.json
     /// </summary>
     public class XDocumentStringConverter : JsonConverter
     {
-        #region Methods
-
         // Public Methods 
 
         public override bool CanConvert(Type objectType)
@@ -46,7 +44,5 @@ namespace isukces.json
 
             writer.WriteValue(serialized);
         }
-
-        #endregion Methods
     }
 }

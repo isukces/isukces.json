@@ -14,9 +14,7 @@ namespace isukces.json
     /// <typeparam name="TAbstract"></typeparam>
     public sealed class AbstractTypeConverter<TAbstract, TConcrete> : JsonConverter
     {
-		#region Methods 
-
-		// Public Methods 
+        // Public Methods 
 
         public override bool CanConvert(Type objectType)
         {
@@ -33,7 +31,5 @@ namespace isukces.json
             // nothing to do - just serialize
             serializer.Serialize(writer, value);
         }
-
-		#endregion Methods 
     }
 }
