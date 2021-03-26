@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "isukces.json", "isukces.json\isukces.json.csproj", "{EEFF80F9-1D63-4CEB-A082-213A8E522A75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iSukces.Json", "iSukces.Json\iSukces.Json.csproj", "{EEFF80F9-1D63-4CEB-A082-213A8E522A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "isukces.json.test", "isukces.json.test\isukces.json.test.csproj", "{C9EE7FAF-E7F6-4B17-8E6A-AF745B592CA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iSukces.Json.test", "iSukces.Json.test\iSukces.Json.test.csproj", "{C9EE7FAF-E7F6-4B17-8E6A-AF745B592CA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

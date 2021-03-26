@@ -1,6 +1,10 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
  
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -9,5 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("21d597f3-3635-414a-b557-c234a204651e")]
+[assembly: Guid("acddcdeb-0a6e-46e9-a3d3-b3cb1ea57512")]
+
+
  

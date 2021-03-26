@@ -3,10 +3,11 @@
   <PropertyGroup>
     <Authors>Internet Sukces Piotr Stęclik</Authors>
     <Company>Internet Sukces Piotr Stęclik</Company>
-    <Copyright>Copyright by Internet Sukces Piotr Stęclik 2017</Copyright>
-    <TargetFrameworks>netstandard1.6;net45</TargetFrameworks>
+    <Copyright>Copyright by Internet Sukces Piotr Stęclik 2017-2021</Copyright>
+    <TargetFrameworks>netstandard1.6;net45;net47;netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Product>iSukces.Json</Product>
     <PackageId>iSukces.Json</PackageId>
@@ -17,8 +18,10 @@
     <AssemblyVersion>1.0.18337.18</AssemblyVersion>
     <Version>1.0.18337.18</Version>
     <FileVersion>1.0.18337.18</FileVersion>
+    <AssemblyName>iSukces.Json</AssemblyName>
+    <RootNamespace>iSukces.Json</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>
