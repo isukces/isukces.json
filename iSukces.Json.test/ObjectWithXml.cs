@@ -1,11 +1,10 @@
 ﻿using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace isukces.json.test
+namespace iSukces.Json.test;
+
+internal class ObjectWithXml
 {
-    class ObjectWithXml
-    {
-        [JsonConverter(typeof(XDocumentStringConverter))]
-        public XDocument Xml { get; set; }
-    }
+    [JsonConverter(typeof(XDocumentStringConverter))]
+    public XDocument Xml { get; set; }
 }

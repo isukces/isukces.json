@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace isukces.json.test
-{
-    public interface IConcteteType
-    {
-        string Name { get; set; }
-        string Country { get; set; }
-    }
+namespace iSukces.Json.test;
 
-    public class ConcteteType : IConcteteType
-    {
-        public string Name { get; set; }
-        public string Country { get; set; }
-    }
+public interface IConcteteType
+{
+    string Name    { get; set; }
+    string Country { get; set; }
+}
+
+public class ConcteteType : IConcteteType
+{
+    public string Name    { get; set; }
+    public string Country { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace isukces.json
+﻿namespace iSukces.Json;
+
+public interface IJsonUtilsProvider
 {
-    public interface IJsonUtilsProvider
-    {
-        JsonUtils GetJsonUtils();
-    }
+    JsonUtils GetJsonUtils();
 }

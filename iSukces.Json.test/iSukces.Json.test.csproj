@@ -8,6 +8,7 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <Version>1.0.0.0</Version>
+    <LangVersion>12</LangVersion>
     <Authors>Internet Sukces Piotr Stęclik</Authors>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <IncludeSource>false</IncludeSource>

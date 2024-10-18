@@ -4,45 +4,44 @@ using System.Text;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace isukces.json
+namespace iSukces.Json;
+
+/// <summary>
+/// 
+/// </summary>
+public class XDocumentStringConverter : JsonConverter
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class XDocumentStringConverter : JsonConverter
+    // Public Methods 
+
+    public override bool CanConvert(Type objectType)
     {
-        // Public Methods 
+        return objectType == typeof(XDocument);
+    }
 
-        public override bool CanConvert(Type objectType)
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        var value = reader.Value;
+        if (value == null)
+            return null;
+        var text = value as string;
+        if (text == null)
+            throw new NotSupportedException("Value must be a string");
+        return string.IsNullOrEmpty(text) ? null : XDocument.Parse(text);
+    }
+
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        var xDocument = value as XDocument;
+        if (xDocument == null)
+            throw new NotImplementedException();
+
+        var builder = new StringBuilder();
+        using (TextWriter textWriter = new StringWriter(builder))
         {
-            return objectType == typeof(XDocument);
+            xDocument.Save(textWriter);
         }
+        var serialized = builder.ToString();
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            var value = reader.Value;
-            if (value == null)
-                return null;
-            var text = value as string;
-            if (text == null)
-                throw new NotSupportedException("Value must be a string");
-            return string.IsNullOrEmpty(text) ? null : XDocument.Parse(text);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            var xDocument = value as XDocument;
-            if (xDocument == null)
-                throw new NotImplementedException();
-
-            var builder = new StringBuilder();
-            using (TextWriter textWriter = new StringWriter(builder))
-            {
-                xDocument.Save(textWriter);
-            }
-            var serialized = builder.ToString();
-
-            writer.WriteValue(serialized);
-        }
+        writer.WriteValue(serialized);
     }
 }

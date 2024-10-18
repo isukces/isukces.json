@@ -1,35 +1,34 @@
 using System.Threading;
 
-namespace isukces.json
+namespace iSukces.Json;
+
+public interface IJsonSemaphore
 {
-    public interface IJsonSemaphore
+    void WaitOne();
+    void ReleaseOne();
+}
+
+public class MutexJsonSemaphore : IJsonSemaphore
+{
+    private readonly Mutex _mutex;
+
+    public static IJsonSemaphore FromMutex(Mutex mutex)
     {
-        void WaitOne();
-        void ReleaseOne();
+        return new MutexJsonSemaphore(mutex);
     }
 
-    public class MutexJsonSemaphore : IJsonSemaphore
+    private MutexJsonSemaphore(Mutex mutex)
     {
-        private readonly Mutex _mutex;
+        _mutex = mutex;
+    }
 
-        public static IJsonSemaphore FromMutex(Mutex mutex)
-        {
-            return new MutexJsonSemaphore(mutex);
-        }
+    public void WaitOne()
+    {
+        _mutex.WaitOne();
+    }
 
-        private MutexJsonSemaphore(Mutex mutex)
-        {
-            _mutex = mutex;
-        }
-
-        public void WaitOne()
-        {
-            _mutex.WaitOne();
-        }
-
-        public void ReleaseOne()
-        {
-            _mutex.ReleaseMutex();
-        }
+    public void ReleaseOne()
+    {
+        _mutex.ReleaseMutex();
     }
 }

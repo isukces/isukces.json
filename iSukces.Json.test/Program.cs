@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace isukces.json.test
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+namespace iSukces.Json.test;
 
-            BasicSerialization.T02_document_with_xml();
-        }
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+
+        BasicSerialization.T02_document_with_xml();
     }
 }
