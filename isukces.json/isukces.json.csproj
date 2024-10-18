@@ -1,27 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>Internet Sukces Piotr Stęclik</Authors>
+    <AssemblyName>iSukces.Json</AssemblyName>
     <Company>Internet Sukces Piotr Stęclik</Company>
-    <Copyright>Copyright by Internet Sukces Piotr Stęclik 2017-2021</Copyright>
-    <TargetFrameworks>netstandard1.6;net45;net47;netstandard2.0;netcoreapp3.1</TargetFrameworks>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly>true</SignAssembly>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Copyright by Internet Sukces Piotr Stęclik 2017-2024</Copyright>
     <Product>iSukces.Json</Product>
-    <PackageId>iSukces.Json</PackageId>
+    <TargetFrameworks>net462;net47;netstandard2.0;netcoreapp3.1;net8.0</TargetFrameworks>
+    <RootNamespace>iSukces.Json</RootNamespace>
+    <AssemblyVersion>1.0.21085.19</AssemblyVersion>
+    <FileVersion>1.0.21085.19</FileVersion>
+    <Version>1.0.21085.19</Version>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <Authors>Internet Sukces Piotr Stęclik</Authors>
     <Description>Small extension for Newtonsoft.Json</Description>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <PackageId>iSukces.Json</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSource>false</IncludeSource>
     <IncludeSymbols>true</IncludeSymbols>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <AssemblyVersion>1.0.21085.19</AssemblyVersion>
-    <Version>1.0.21085.19</Version>
-    <FileVersion>1.0.21085.19</FileVersion>
-    <AssemblyName>iSukces.Json</AssemblyName>
-    <RootNamespace>iSukces.Json</RootNamespace>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageProjectUrl>https://github.com/isukces/isukces.json</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/isukces/isukces.json</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>
