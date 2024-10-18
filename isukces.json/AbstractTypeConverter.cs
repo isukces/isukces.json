@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace iSukces.Json;
@@ -13,6 +9,7 @@ namespace iSukces.Json;
 /// <typeparam name="TConcrete"></typeparam>
 /// <typeparam name="TAbstract"></typeparam>
 public sealed class AbstractTypeConverter<TAbstract, TConcrete> : JsonConverter
+    where TConcrete : TAbstract
 {
     public override bool CanConvert(Type objectType)
     {

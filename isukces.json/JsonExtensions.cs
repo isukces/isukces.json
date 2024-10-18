@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace iSukces.Json;
@@ -20,7 +16,7 @@ public static class JsonExtensions
     /// <typeparam name="TConcrete"></typeparam>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public static JsonSerializer WithAbstractTypeConverter<TAbstract, TConcrete>(this JsonSerializer src)
+    public static JsonSerializer WithAbstractTypeConverter<TAbstract, TConcrete>(this JsonSerializer src) where TConcrete : TAbstract
     {
         if (src == null) throw new ArgumentNullException(nameof(src));
         src.Converters.Add(new AbstractTypeConverter<TAbstract, TConcrete>());
@@ -30,12 +26,13 @@ public static class JsonExtensions
 
     public static Func<JsonSerializer> WithProcessing(this Func<JsonSerializer> src, Action<JsonSerializer> action)
     {
-        Func<JsonSerializer> func = () =>
+        return MyAction;
+
+        JsonSerializer MyAction()
         {
             var jsonSerializer = src();
             action(jsonSerializer);
             return jsonSerializer;
-        };
-        return func;
+        }
     }
 }

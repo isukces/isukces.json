@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iSukces.Json.test;
+﻿namespace iSukces.Json.test;
 
 public interface IConcteteType
 {
