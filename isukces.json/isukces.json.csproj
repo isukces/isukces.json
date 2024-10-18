@@ -7,12 +7,12 @@
     <Product>iSukces.Json</Product>
     <TargetFrameworks>net462;net47;netstandard2.0;netcoreapp3.1;net8.0</TargetFrameworks>
     <RootNamespace>iSukces.Json</RootNamespace>
-    <AssemblyVersion>1.0.21085.19</AssemblyVersion>
-    <FileVersion>1.0.21085.19</FileVersion>
-    <Version>1.0.21085.19</Version>
+    <AssemblyVersion>1.24.1018.20</AssemblyVersion>
+    <FileVersion>1.24.1018.20</FileVersion>
+    <Version>1.24.1018.20</Version>
     <LangVersion>12</LangVersion>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(SignKey)</AssemblyOriginatorKeyFile>
     <Authors>Internet Sukces Piotr Stęclik</Authors>
     <Description>Small extension for Newtonsoft.Json</Description>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
@@ -30,5 +30,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 </Project>
