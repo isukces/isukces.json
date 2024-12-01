@@ -3,14 +3,15 @@
   <PropertyGroup>
     <AssemblyName>iSukces.Json</AssemblyName>
     <Company>Internet Sukces Piotr Stęclik</Company>
-    <Copyright>Copyright by Internet Sukces Piotr Stęclik 2017-2024</Copyright>
+    <Copyright>Copyright © Internet Sukces Piotr Stęclik 2017-2024</Copyright>
     <Product>iSukces.Json</Product>
-    <TargetFrameworks>net462;net47;netstandard2.0;netcoreapp3.1;net8.0</TargetFrameworks>
+    <ProjectGuid>{9FE56FFA-B4E0-4463-BCAE-739D352DD5F3}</ProjectGuid>
+    <TargetFrameworks>net462;net47;net8.0;net9.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
     <RootNamespace>iSukces.Json</RootNamespace>
-    <AssemblyVersion>1.24.1018.20</AssemblyVersion>
-    <FileVersion>1.24.1018.20</FileVersion>
-    <Version>1.24.1018.20</Version>
-    <LangVersion>12</LangVersion>
+    <AssemblyVersion>1.24.1201.21</AssemblyVersion>
+    <FileVersion>1.24.1201.21</FileVersion>
+    <Version>1.24.1201.21</Version>
+    <LangVersion>13</LangVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(SignKey)</AssemblyOriginatorKeyFile>
     <Authors>Internet Sukces Piotr Stęclik</Authors>
@@ -29,7 +30,7 @@
     <RepositoryUrl>https://github.com/isukces/isukces.json</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>
