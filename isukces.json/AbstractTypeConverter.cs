@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 
 namespace iSukces.Json;
@@ -16,12 +16,12 @@ public sealed class AbstractTypeConverter<TAbstract, TConcrete> : JsonConverter
         return objectType == typeof(TAbstract);
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         return serializer.Deserialize<TConcrete>(reader);
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         // nothing to do - just serialize
         serializer.Serialize(writer, value);

@@ -2,19 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>iSukces.Json</AssemblyName>
-    <Company>Internet Sukces Piotr Stęclik</Company>
-    <Copyright>Copyright © Internet Sukces Piotr Stęclik 2017-2024</Copyright>
     <Product>iSukces.Json</Product>
     <ProjectGuid>{9FE56FFA-B4E0-4463-BCAE-739D352DD5F3}</ProjectGuid>
-    <TargetFrameworks>net462;net47;net8.0;net9.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
     <RootNamespace>iSukces.Json</RootNamespace>
-    <AssemblyVersion>1.24.1201.21</AssemblyVersion>
-    <FileVersion>1.24.1201.21</FileVersion>
-    <Version>1.24.1201.21</Version>
+    <AssemblyVersion>1.25.113.22</AssemblyVersion>
+    <FileVersion>1.25.113.22</FileVersion>
+    <Version>1.25.113.22</Version>
     <LangVersion>13</LangVersion>
+    <Nullable>enable</Nullable>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(SignKey)</AssemblyOriginatorKeyFile>
-    <Authors>Internet Sukces Piotr Stęclik</Authors>
     <Description>Small extension for Newtonsoft.Json</Description>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <PackageId>iSukces.Json</PackageId>

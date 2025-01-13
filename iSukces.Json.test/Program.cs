@@ -1,10 +1,9 @@
-﻿namespace iSukces.Json.test;
+namespace iSukces.Json.test;
 
-internal class Program
+internal static class Program
 {
     private static void Main(string[] args)
     {
-
         BasicSerialization.T02_document_with_xml();
     }
 }

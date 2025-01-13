@@ -2,7 +2,7 @@ using System;
 
 namespace iSukces.Json;
 
-static class Sync
+internal static class Sync
 {
     public static T Calc<T>(IJsonSemaphore mutex, Func<T> func)
     {

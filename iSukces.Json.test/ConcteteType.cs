@@ -1,4 +1,4 @@
-﻿namespace iSukces.Json.test;
+namespace iSukces.Json.test;
 
 public interface IConcteteType
 {
