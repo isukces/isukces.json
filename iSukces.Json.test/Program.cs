@@ -1,3 +1,4 @@
+/*
 namespace iSukces.Json.test;
 
 internal static class Program
@@ -7,3 +8,4 @@ internal static class Program
         BasicSerialization.T02_document_with_xml();
     }
 }
+*/
