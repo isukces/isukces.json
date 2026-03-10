@@ -11,8 +11,6 @@ namespace iSukces.Json;
 /// </summary>
 public class XDocumentStringConverter : JsonConverter
 {
-    // Public Methods 
-
     public override bool CanConvert(Type objectType)
     {
         return objectType == typeof(XDocument);
@@ -28,7 +26,7 @@ public class XDocumentStringConverter : JsonConverter
         return string.IsNullOrEmpty(text) ? null : XDocument.Parse(text);
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value is not XDocument xDocument)
             throw new NotImplementedException();

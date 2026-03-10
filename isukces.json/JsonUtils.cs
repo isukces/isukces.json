@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +30,7 @@ public class JsonUtils
         return serializer;
     }
 
-    public T Deserialize<T>(string json)
+    public T? Deserialize<T>(string json)
     {
         var              serializer = SerializerFactory();
         using JsonReader jsonReader = new JsonTextReader(new StringReader(json));
@@ -40,9 +41,9 @@ public class JsonUtils
     {
         if (string.IsNullOrEmpty(json))
             return null;
-        var serializer = SerializerFactory();
-        using(JsonReader jsonReader = new JsonTextReader(new StringReader(json)))
-            return serializer.Deserialize(jsonReader, objectType);
+        var              serializer = SerializerFactory();
+        using JsonReader jsonReader = new JsonTextReader(new StringReader(json));
+        return serializer.Deserialize(jsonReader, objectType);
     }
 
 
@@ -54,21 +55,19 @@ public class JsonUtils
         return result;
     }
 
-    public T Load<T>(FileInfo file)
+    public T? Load<T>(FileInfo file)
     {
         if (file == null)
             throw new ArgumentNullException(nameof(file));
         if (!file.Exists)
             return default(T);
 
-        using(var fileStream = File.Open(file.FullName, FileMode.Open))
-        using(var reader = new StreamReader(fileStream))
-        using(var textReader = new JsonTextReader(reader))
-        {
-            var serializer = SerializerFactory();
-            var result     = serializer.Deserialize<T>(textReader);
-            return result;
-        }
+        using var fileStream = File.Open(file.FullName, FileMode.Open);
+        using var reader     = new StreamReader(fileStream);
+        using var textReader = new JsonTextReader(reader);
+        var       serializer = SerializerFactory();
+        var       result     = serializer.Deserialize<T>(textReader);
+        return result;
     }
 
 
